@@ -1,0 +1,40 @@
+{% extends 'navbar1.html' %}
+
+{% block content %}
+<br>
+<h3 class="text-center mt-2">ALL PRODUCT DETAILS</h3><br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10"> 
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Images</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in products %}
+                        <tr>
+                            <td>{{ p.pname }}</td>
+                            <td>{{ p.prdt_desc}}</td>
+                            <td>{{ p.price }}</td>
+                            <td><img src="{{ p.prdt_image.url }}" style="max-width: 200px; max-height: 70px;"></td>
+                            <td>{{ p.category.category_name }}</td>
+                            <td>
+                                <a href="{% url 'delete_product' p.id %}" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

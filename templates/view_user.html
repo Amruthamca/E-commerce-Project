@@ -1,0 +1,36 @@
+{% extends 'navbar1.html' %}
+
+{% block content %}
+<br>
+<h3 class="text-center mt-2">ALL USER DETAILS</h3><br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10"> 
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                        <tr class="bg-primary">
+                            <th>Username</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Contact No.</th>
+                            <th>Images</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for user in all_users %}
+                        <tr>
+                            <td>{{ user.user.username }}</td>
+                            <td>{{ user.address }}</td>
+                            <td>{{ user.user.email }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td><img src="{{ user.prof_image.url }}" alt="{{ user.user.username }}" style="width: 50px; height: 50px;"></td>
+                            <td>
+                                <a href="{% url 'delete_user' user.user.id %}" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
